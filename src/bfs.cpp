@@ -2,17 +2,18 @@
 #include <iostream>
 #include <vector>
 
-#include "headers/algorithms/astar.hpp"
-#include "headers/maps/map_01.hpp"
+#include "../headers/algorithms/bfs.hpp"
+#include "../headers/maps/map_10.hpp"
 
 using namespace std;
 using namespace chrono;
 
 int main() {
-  // 시작 위치 'S'의 x, y 좌표를 -1로 초기화
+  // 시작 위치 'S'의 x, y 좌표를 -1로, 거리를 0으로 초기화
   Position<int> start;
   start.x = -1;
   start.y = -1;
+  start.distance = 0;
 
   // 끝 위치 'E'의 x, y 좌표를 -1로 초기화
   Position<int> end;
@@ -38,14 +39,14 @@ int main() {
     return 1;
   }
 
-  // A* 알고리즘을 사용하기 위해 AStar 객체 생성
-  AStar astar(map);
+  // BFS 알고리즘을 사용하기 위해 BFS 객체 생성
+  BFS bfs(map);
 
   // 시작 시간 기록
   auto start_time = high_resolution_clock::now();
 
-  // A* 알고리즘을 사용하여 경로 찾기
-  Position<int> result = astar.findPath(start, end);
+  // BFS 알고리즘을 사용하여 경로 찾기
+  Position<int> result = bfs.findPath(start);
 
   // 종료 시간 기록
   auto end_time = high_resolution_clock::now();
