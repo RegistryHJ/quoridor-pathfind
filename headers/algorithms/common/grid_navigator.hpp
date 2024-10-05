@@ -1,6 +1,7 @@
 #ifndef GRID_NAVIGATOR_HPP
 #define GRID_NAVIGATOR_HPP
 
+#include <cmath>
 #include <vector>
 
 class GridNavigator {
