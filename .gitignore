@@ -1,0 +1,12 @@
+### Distributions ###
+dists/
+
+### Excutables ###
+*.out
+*.so
+*.exe
+*.dll
+
+### IDE ###
+/.idea
+/.vscode

@@ -1,0 +1,18 @@
+﻿---
+BasedOnStyle: LLVM
+AccessModifierOffset: '-2'
+AllowShortBlocksOnASingleLine: 'true'
+AllowShortCaseLabelsOnASingleLine: 'true'
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: 'true'
+BreakBeforeTernaryOperators: 'true'
+ColumnLimit: '100'
+ContinuationIndentWidth: '2'
+Cpp11BracedListStyle: 'false'
+IndentWidth: '2'
+Language: Cpp
+TabWidth: '2'
+
+...
