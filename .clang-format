@@ -1,6 +1,7 @@
 ﻿---
 BasedOnStyle: LLVM
 AccessModifierOffset: '-2'
+AlignTrailingComments: 'False' 
 AllowShortBlocksOnASingleLine: 'true'
 AllowShortCaseLabelsOnASingleLine: 'true'
 AllowShortFunctionsOnASingleLine: All
