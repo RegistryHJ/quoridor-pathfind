@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "../headers/algorithms/jps.hpp"
-#include "../headers/maps/map_02.hpp"
+#include "../headers/maps/map_15.hpp"
 
 using namespace std;
 using namespace chrono;
