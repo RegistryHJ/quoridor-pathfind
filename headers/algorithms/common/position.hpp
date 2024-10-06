@@ -66,9 +66,16 @@ template <typename T> struct Position {
   Position(int x, int y, DStarLite dstar)
       : x(x), y(y), g(dstar.g), rhs(dstar.rhs), key(dstar.key) {}
 
-  // 연산자 함수 (A* 계열, D* Lite)
+  // 연산자 함수 (A* 계열)
   bool operator<(const Position &other) const {
     return f > other.f; // 최소 힙을 위해 비교 연산자 정의
+  }
+
+  // 연산자 함수 (D* Lite)
+  bool operator>(const Position &other) const {
+    if (key[0] == other.key[0])
+      return key[1] > other.key[1];
+    return key[0] > other.key[0];
   }
 };
 
