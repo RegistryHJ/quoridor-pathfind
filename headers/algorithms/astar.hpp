@@ -11,27 +11,31 @@ class AStar : public GridNavigator {
 public:
   AStar(const std::vector<std::vector<char>> &map) : GridNavigator(map) {}
 
-  Position<int> findPath(Position<int> start, Position<int> end) {
+  Position<int> findPath(const Position<int> &start, const Position<int> &end) {
     std::priority_queue<Position<int>> openList;
 
-    start.g = 0;
-    start.f = heuristic(start.x, start.y, end.x, end.y);
-    start.path.push_back({ start.x, start.y });
+    int g = 0;
+    int h = heuristic(start.x, start.y, end.x, end.y);
+    int f = g + h;
+    Position<int>::AStar astarParams(g, h, f);
 
-    openList.push(start);
+    Position<int> startPos(start.x, start.y, astarParams, {{start.x, start.y}});
+    openList.push(startPos);
 
     while (!openList.empty()) {
       Position<int> current = openList.top();
       openList.pop();
 
       // 이미 방문한 위치인 경우
-      if (visited[current.x][current.y]) continue;
+      if (visited[current.x][current.y])
+        continue;
 
       // 방문한 위치로 표시
       visited[current.x][current.y] = true;
 
       // 목표 위치에 도달했을 때
-      if (current.x == end.x && current.y == end.y) return current;
+      if (current.x == end.x && current.y == end.y)
+        return current;
 
       // 네 방향 탐색
       for (int i = 0; i < 4; ++i) {
@@ -40,19 +44,23 @@ public:
 
         // 이동 가능한 위치인지 확인
         if (isValidMove(nX, nY)) {
-          Position<int> next;
-          next.x = nX;
-          next.y = nY;
-          next.g = current.g + 1; // 비용 1로 설정 (맨해튼 거리)
-          next.f = next.g + heuristic(nX, nY, end.x, end.y); // f = g + h
-          next.path = current.path;                          // 이전 경로 복사
-          next.path.push_back({ nX, nY });                   // 다음 위치 추가
-          openList.push(next);                               // 다음 위치를 openList에 추가
+          int nG = current.g + 1;
+          int nH = heuristic(nX, nY, end.x, end.y);
+          int nF = nG + nH;
+          Position<int>::AStar nextAStarParams(nG, nH, nF);
+
+          std::vector<std::pair<int, int>> nextPath = current.path;
+          nextPath.push_back({nX, nY});
+
+          Position<int> next(nX, nY, nextAStarParams, nextPath);
+          openList.push(next);
         }
       }
     }
 
-    return { -1, -1, 0, 0, {} }; // 경로를 찾지 못한 경우
+    // 경로를 찾지 못한 경우
+    Position<int>::AStar missedAStarParams(0, 0, 0);
+    return Position<int>(-1, -1, missedAStarParams, {});
   }
 };
 

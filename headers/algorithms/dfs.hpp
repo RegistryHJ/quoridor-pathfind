@@ -9,13 +9,17 @@
 
 class DFS : public GridNavigator {
 public:
-  DFS(const std::vector<std::vector<char>> &inputMap) : GridNavigator(inputMap) {}
+  DFS(const std::vector<std::vector<char>> &inputMap)
+      : GridNavigator(inputMap) {}
 
-  Position<int> findPath(Position<int> start) {
+  Position<int> findPath(const Position<int> &start) {
     std::stack<Position<int>> s;
 
+    Position<int>::DFS dfsParams;
+
     // 시작 지점 추가 및 방문 표시
-    s.push(start);
+    Position<int> startPos(start.x, start.y, dfsParams, {{start.x, start.y}});
+    s.push(startPos);
     visited[start.x][start.y] = true;
 
     while (!s.empty()) {
@@ -23,7 +27,8 @@ public:
       s.pop();
 
       // 'E'에 도달한 경우 경로 반환
-      if (map[current.x][current.y] == 'E') return current;
+      if (map[current.x][current.y] == 'E')
+        return current;
 
       // 네 방향 탐색
       for (int i = 0; i < 4; ++i) {
@@ -33,15 +38,21 @@ public:
         // 이동 가능한 위치인지 확인
         if (isValidMove(nX, nY)) {
           visited[nX][nY] = true;
-          Position<int> next = { nX, nY, current.path };
-          next.path.push_back({ nX, nY }); // 다음 위치 추가
-          s.push(next);                    // 다음 위치를 스택에 추가
+
+          Position<int>::DFS nextDfsParams;
+
+          std::vector<std::pair<int, int>> nextPath = current.path;
+          nextPath.push_back({nX, nY});
+
+          Position<int> next(nX, nY, nextDfsParams, nextPath);
+          s.push(next); // 다음 위치를 스택에 추가
         }
       }
     }
 
     // 경로를 찾지 못한 경우
-    return { -1, -1, {} };
+    Position<int>::DFS missedDfsParams;
+    return Position<int>(-1, -1, missedDfsParams, {});
   }
 };
 
