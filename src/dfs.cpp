@@ -1,4 +1,5 @@
 #include <chrono>
+#include <iomanip>
 #include <iostream>
 #include <vector>
 
@@ -75,6 +76,7 @@ int main() {
       cout << "No path to the end found." << endl;
 
     // 경과 시간 출력
+    cout << fixed << setprecision(9);
     cout << "Time taken: " << elapsed_time.count() << " ms" << endl;
   }
   return 0;
