@@ -1,19 +1,23 @@
 ﻿---
 BasedOnStyle: LLVM
 AccessModifierOffset: '-2'
-AlignTrailingComments: 'False' 
+AlignTrailingComments: 'false' 
 AllowShortBlocksOnASingleLine: 'true'
 AllowShortCaseLabelsOnASingleLine: 'true'
-AllowShortFunctionsOnASingleLine: All
+AllowShortFunctionsOnASingleLine: 'Empty'
 AllowShortIfStatementsOnASingleLine: Always
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: 'true'
+BinPackArguments: 'true'
+BinPackParameters: 'true'
 BreakBeforeTernaryOperators: 'true'
-ColumnLimit: '100'
+BreakConstructorInitializers: BeforeColon
+ColumnLimit: '120'
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 2
 ContinuationIndentWidth: '2'
 Cpp11BracedListStyle: 'false'
 IndentWidth: '2'
 Language: Cpp
 TabWidth: '2'
-
 ...
