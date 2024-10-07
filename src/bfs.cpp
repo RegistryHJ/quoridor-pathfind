@@ -27,10 +27,9 @@ int main() {
         start.x = i;
         start.y = j;
         start.g = 0;
-        start.path = {{i, j}}; // 시작 위치로 경로 초기화
+        start.path = { { i, j } }; // 시작 위치로 경로 초기화
       }
-      if (map[i][j] == 'E')
-        end = {i, j}; // 끝 위치 'E'를 찾음
+      if (map[i][j] == 'E') end = { i, j }; // 끝 위치 'E'를 찾음
     }
   }
 
@@ -47,7 +46,7 @@ int main() {
   auto start_time = high_resolution_clock::now();
 
   // BFS 알고리즘을 사용하여 경로 찾기
-  Position<int> result = bfs.findPath(start);
+  Position<int> result = bfs.find_path(start);
 
   // 종료 시간 기록
   auto end_time = high_resolution_clock::now();
@@ -71,8 +70,7 @@ int main() {
 
     // 경로가 표시된 맵 출력
     for (const auto &row : map) {
-      for (const auto &cell : row)
-        cout << cell;
+      for (const auto &cell : row) cout << cell;
       cout << endl;
     }
   } else

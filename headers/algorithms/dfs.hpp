@@ -9,17 +9,16 @@
 
 class DFS : public GridNavigator {
 public:
-  DFS(const std::vector<std::vector<char>> &inputMap)
-      : GridNavigator(inputMap) {}
+  DFS(const std::vector<std::vector<char>> &map) : GridNavigator(map) {}
 
-  Position<int> findPath(const Position<int> &start) {
+  Position<int> find_path(const Position<int> &start) {
     std::stack<Position<int>> s;
 
-    Position<int>::DFS dfsParams;
+    Position<int>::DFS dfs_params;
 
     // 시작 지점 추가 및 방문 표시
-    Position<int> startPos(start.x, start.y, dfsParams, {{start.x, start.y}});
-    s.push(startPos);
+    Position<int> start_pos(start.x, start.y, dfs_params, { { start.x, start.y } });
+    s.push(start_pos);
     visited[start.x][start.y] = true;
 
     while (!s.empty()) {
@@ -27,32 +26,31 @@ public:
       s.pop();
 
       // 'E'에 도달한 경우 경로 반환
-      if (map[current.x][current.y] == 'E')
-        return current;
+      if (map[current.x][current.y] == 'E') return current;
 
       // 네 방향 탐색
       for (int i = 0; i < 4; ++i) {
-        int nX = current.x + dx[i];
-        int nY = current.y + dy[i];
+        int next_x = current.x + direction_x[i];
+        int next_y = current.y + direction_y[i];
 
         // 이동 가능한 위치인지 확인
-        if (isValidMove(nX, nY)) {
-          visited[nX][nY] = true;
+        if (is_valid_move(next_x, next_y)) {
+          visited[next_x][next_y] = true;
 
-          Position<int>::DFS nextDfsParams;
+          Position<int>::DFS next_dfs_params;
 
-          std::vector<std::pair<int, int>> nextPath = current.path;
-          nextPath.push_back({nX, nY});
+          std::vector<std::pair<int, int>> next_path = current.path;
+          next_path.push_back({ next_x, next_y });
 
-          Position<int> next(nX, nY, nextDfsParams, nextPath);
+          Position<int> next(next_x, next_y, next_dfs_params, next_path);
           s.push(next); // 다음 위치를 스택에 추가
         }
       }
     }
 
     // 경로를 찾지 못한 경우
-    Position<int>::DFS missedDfsParams;
-    return Position<int>(-1, -1, missedDfsParams, {});
+    Position<int>::DFS missed_dfs_params;
+    return Position<int>(-1, -1, missed_dfs_params, {});
   }
 };
 

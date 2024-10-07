@@ -6,16 +6,16 @@
 #include <vector>
 
 template <typename T> struct Position {
-  int x, y;                              // 현재 위치 x, y 좌표
+  int x, y; // 현재 위치 x, y 좌표
   std::vector<std::pair<int, int>> path; // 이동 경로를 저장하기 위한 벡터
 
   // 알고리즘별 멤버 변수
-  int distance = 0;              // 시작 위치로부터의 거리 (BFS)
-  T g = 0;                       // 현재까지의 비용 (A*, D* Lite)
-  T h = 0;                       // 목표 비용 (A*)
-  T f = 0;                       // 예상 총 비용 (A*)
-  T rhs = 0;                     // 우측 비용 (D* Lite)
-  std::array<T, 2> key = {0, 0}; // D* Lite 알고리즘에서 사용하는 키
+  int distance = 0; // 시작 위치로부터의 거리 (BFS)
+  T g = 0; // 현재까지의 비용 (A* 계열, D* Lite)
+  T h = 0; // 목표 비용 (A* 계열)
+  T f = 0; // 예상 총 비용 (A* 계열)
+  T rhs = 0; // Right Hand Side, 예상 최적 비용 (D* Lite)
+  std::array<T, 2> key = { 0, 0 }; // D* Lite 알고리즘에서 사용하는 키
 
   struct BFS {
     int distance = 0;
@@ -36,9 +36,8 @@ template <typename T> struct Position {
   struct DStarLite {
     double g = 0;
     double rhs = 0;
-    std::array<double, 2> key = {0, 0};
-    explicit DStarLite(double g, double rhs, std::array<double, 2> key)
-        : g(g), rhs(rhs), key(key) {}
+    std::array<double, 2> key = { 0, 0 };
+    explicit DStarLite(double g, double rhs, std::array<double, 2> key) : g(g), rhs(rhs), key(key) {}
   };
 
   // 기본 생성자
@@ -48,23 +47,18 @@ template <typename T> struct Position {
   Position(int x, int y) : x(x), y(y) {}
 
   // 생성자 (BFS)
-  Position(int x, int y, BFS bfs,
-           const std::vector<std::pair<int, int>> &path = {})
-      : x(x), y(y), distance(bfs.distance), path(path) {}
+  Position(int x, int y, BFS bfs, const std::vector<std::pair<int, int>> &path = {})
+    : x(x), y(y), distance(bfs.distance), path(path) {}
 
   // 생성자 (DFS)
-  Position(int x, int y, DFS dfs,
-           const std::vector<std::pair<int, int>> &path = {})
-      : x(x), y(y), path(path) {}
+  Position(int x, int y, DFS dfs, const std::vector<std::pair<int, int>> &path = {}) : x(x), y(y), path(path) {}
 
   // 생성자 (A* 계열)
-  Position(int x, int y, AStar astar,
-           const std::vector<std::pair<int, int>> &path = {})
-      : x(x), y(y), g(astar.g), h(astar.h), f(astar.f), path(path) {}
+  Position(int x, int y, AStar astar, const std::vector<std::pair<int, int>> &path = {})
+    : x(x), y(y), g(astar.g), h(astar.h), f(astar.f), path(path) {}
 
   // 생성자 (D* Lite)
-  Position(int x, int y, DStarLite dstar)
-      : x(x), y(y), g(dstar.g), rhs(dstar.rhs), key(dstar.key) {}
+  Position(int x, int y, DStarLite dstar) : x(x), y(y), g(dstar.g), rhs(dstar.rhs), key(dstar.key) {}
 
   // 연산자 함수 (A* 계열)
   bool operator<(const Position &other) const {
@@ -73,8 +67,7 @@ template <typename T> struct Position {
 
   // 연산자 함수 (D* Lite)
   bool operator>(const Position &other) const {
-    if (key[0] == other.key[0])
-      return key[1] > other.key[1];
+    if (key[0] == other.key[0]) return key[1] > other.key[1];
     return key[0] > other.key[0];
   }
 };

@@ -26,10 +26,9 @@ int main() {
         start.x = i;
         start.y = j;
         start.g = 0;
-        start.path = {{i, j}}; // 시작 위치로 경로 초기화
+        start.path = { { i, j } }; // 시작 위치로 경로 초기화
       }
-      if (map[i][j] == 'E')
-        end = {i, j}; // 끝 위치 'E'를 찾음
+      if (map[i][j] == 'E') end = { i, j }; // 끝 위치 'E'를 찾음
     }
   }
 
@@ -40,14 +39,14 @@ int main() {
   }
 
   // D* Lite 알고리즘을 사용하기 위해 DStarLite 객체 생성
-  DStarLite dstarLite(map, start, end);
+  DStarLite dstar_lite(map, start, end);
 
   // 시작 시간 기록
   auto start_time = high_resolution_clock::now();
 
   // D* Lite 알고리즘을 사용하여 경로 찾기
-  dstarLite.computeShortestPath();
-  vector<pair<int, int>> path = dstarLite.findPath();
+  dstar_lite.compute_shortest_path();
+  vector<pair<int, int>> path = dstar_lite.find_path();
 
   // 종료 시간 기록
   auto end_time = high_resolution_clock::now();
@@ -71,8 +70,7 @@ int main() {
 
     // 경로가 표시된 맵 출력
     for (const auto &row : map) {
-      for (const auto &cell : row)
-        cout << cell;
+      for (const auto &cell : row) cout << cell;
       cout << endl;
     }
   } else
