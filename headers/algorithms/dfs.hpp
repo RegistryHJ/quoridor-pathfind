@@ -1,9 +1,10 @@
 #ifndef DFS_HPP
 #define DFS_HPP
 
+#include <vector>
+
 #include "common/grid_navigator.hpp"
 #include "common/position.hpp"
-#include <vector>
 
 class DFS : public GridNavigator {
 public:
