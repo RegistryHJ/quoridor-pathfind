@@ -1,17 +1,13 @@
 #ifndef DFS_HPP
 #define DFS_HPP
 
-#include <vector>
-
 #include "common/grid_navigator.hpp"
 #include "common/position.hpp"
+#include <vector>
 
 class DFS : public GridNavigator {
 public:
-  DFS(const std::vector<std::vector<char>> &map) : GridNavigator(map) {
-    // 방문 기록 배열 초기화
-    visited = std::vector<std::vector<bool>>(map.size(), std::vector<bool>(map[0].size(), false));
-  }
+  DFS(const std::vector<std::vector<char>> &map) : GridNavigator(map) {}
 
   Position<int> find_path(const Position<int> &start) {
     Position<int>::DFS dfs_params;
@@ -36,7 +32,7 @@ private:
       int next_y = y + direction_y[i];
 
       // 유효한 이동인지 확인
-      if (is_valid_move(next_x, next_y) && !visited[next_x][next_y]) {
+      if (is_valid_move(next_x, next_y)) {
         visited[next_x][next_y] = true; // 방문 처리
         path.push_back({ next_x, next_y }); // 경로에 추가
 
@@ -55,8 +51,6 @@ private:
     Position<int>::DFS dfs_params;
     return Position<int>(-1, -1, dfs_params, {});
   }
-
-  std::vector<std::vector<bool>> visited;
 };
 
 #endif
