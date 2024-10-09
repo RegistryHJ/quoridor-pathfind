@@ -1,10 +1,10 @@
 #include <chrono>
 #include <iostream>
-#include <limits> // std::numeric_limits 사용
+#include <limits>
 #include <vector>
 
 #include "../headers/algorithms/bfs.hpp"
-#include "../headers/maps/map_15.hpp"
+#include "../headers/maps/map_form.hpp"
 
 using namespace std;
 using namespace chrono;
@@ -15,11 +15,6 @@ int main() {
   start.x = -1;
   start.y = -1;
   start.distance = 0;
-
-  // 끝 위치 'E'의 x, y 좌표를 -1로 초기화
-  Position<int> end;
-  end.x = -1;
-  end.y = -1;
 
   // 여러 개의 끝 위치 'E'를 저장하는 벡터
   vector<Position<int>> ends;

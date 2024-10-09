@@ -1,10 +1,10 @@
 #include <chrono>
 #include <iostream>
-#include <limits> // std::numeric_limits 사용
+#include <limits>
 #include <vector>
 
 #include "../headers/algorithms/astar.hpp"
-#include "../headers/maps/map_15.hpp"
+#include "../headers/maps/map_form.hpp"
 
 using namespace std;
 using namespace chrono;
