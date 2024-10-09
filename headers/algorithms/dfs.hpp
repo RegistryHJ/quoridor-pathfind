@@ -10,8 +10,9 @@ public:
   DFS(const std::vector<std::vector<char>> &map) : GridNavigator(map) {}
 
   Position<int> find_path(const Position<int> &start) {
-    Position<int>::DFS dfs_params;
-    std::vector<std::pair<int, int>> path = { { start.x, start.y } };
+    std::vector<std::pair<int, int>> path;
+
+    path.push_back({ start.x, start.y });
 
     // 시작 위치를 방문한 상태로 설정하고 재귀 호출 시작
     visited[start.x][start.y] = true;
@@ -48,8 +49,8 @@ private:
     }
 
     // 경로를 찾지 못한 경우 (-1, -1 반환)
-    Position<int>::DFS dfs_params;
-    return Position<int>(-1, -1, dfs_params, {});
+    Position<int>::DFS missed_dfs_params;
+    return Position<int>(-1, -1, missed_dfs_params, {});
   }
 };
 
