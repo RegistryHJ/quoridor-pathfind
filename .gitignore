@@ -10,3 +10,5 @@ dists/
 ### IDE ###
 /.idea
 /.vscode
+
+/.cpp
