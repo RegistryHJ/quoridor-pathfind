@@ -1,6 +1,6 @@
 #include <chrono>
-#include <iomanip>
 #include <iostream>
+#include <limits> // std::numeric_limits 사용
 #include <vector>
 
 #include "../headers/algorithms/astar.hpp"
@@ -14,11 +14,6 @@ int main() {
   Position<int> start;
   start.x = -1;
   start.y = -1;
-
-  // 끝 위치 'E'의 x, y 좌표를 -1로 초기화
-  Position<int> end;
-  end.x = -1;
-  end.y = -1;
 
   // 여러 개의 끝 위치 'E'를 저장하는 벡터
   vector<Position<int>> ends;
@@ -36,7 +31,12 @@ int main() {
     }
   }
 
-  for (const auto end : ends) {
+  int min_steps = numeric_limits<int>::max(); // 가장 작은 경로의 이동 횟수
+  vector<vector<char>> best_map_copy; // 가장 짧은 경로의 맵 복사본
+  double best_time = 0.0; // 가장 짧은 경로의 시간
+
+  // 각 'E' 위치에 대해 경로 찾기
+  for (const auto &end : ends) {
     vector<vector<char>> map_copy = map;
 
     // A* 알고리즘을 사용하기 위해 AStar 객체 생성
@@ -59,26 +59,36 @@ int main() {
     if (result.x != -1) {
       // 경로에 '*' 표시하고 실제 이동한 횟수 계산
       for (const auto &pos : result.path) {
-        if (map_copy[pos.first][pos.second] == '.') {
+        if (map_copy[pos.first][pos.second] == '.' || map_copy[pos.first][pos.second] == 'E') {
           map_copy[pos.first][pos.second] = '*';
           step_count++;
         }
       }
 
-      // 이동 횟수 출력
-      cout << "Reached an 'E' in " << step_count << " steps." << endl;
-
-      // 경로가 표시된 맵 출력
-      for (const auto &row : map_copy) {
-        for (const auto &cell : row) cout << cell;
-        cout << endl;
+      // 가장 작은 step_count와 비교하여 업데이트
+      if (step_count < min_steps) {
+        min_steps = step_count;
+        best_map_copy = map_copy; // 가장 짧은 경로의 맵 복사본 저장
+        best_time = elapsed_time.count(); // 경과 시간 저장
       }
-    } else
-      cout << "No path to the end found." << endl;
+    }
+  }
+
+  // 가장 작은 step_count를 가진 경로 출력
+  if (min_steps < numeric_limits<int>::max()) {
+    cout << "Reached an 'E' in " << min_steps << " steps." << endl;
+
+    // 경로가 표시된 맵 출력
+    for (const auto &row : best_map_copy) {
+      for (const auto &cell : row) cout << cell;
+      cout << endl;
+    }
 
     // 경과 시간 출력
-    cout << fixed << setprecision(9);
-    cout << "Time taken: " << elapsed_time.count() << " ms" << endl;
+    cout << "Time taken: " << best_time << " ms" << endl;
+  } else {
+    cout << "No path to the end found." << endl;
   }
+
   return 0;
 }
