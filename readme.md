@@ -53,7 +53,7 @@
 
 다음은 실험에서 사용하는 맵 10종이다.
 
-<table border="2" cellpadding="10">
+<table border="1" cellpadding="10">
   <tr>
     <th>가로형</th>
     <th>세로형</th>
@@ -83,7 +83,7 @@
 
 **실행 시간(ms):**
 
-<table border="2" cellpadding="5">
+<table border="1" cellpadding="5">
   <thead>
     <tr>
       <th>Map</th>
