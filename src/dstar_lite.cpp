@@ -34,6 +34,7 @@ int main() {
   int min_steps = numeric_limits<int>::max(); // 가장 작은 경로의 이동 횟수
   vector<vector<char>> best_map_copy; // 가장 짧은 경로의 맵 복사본
   double best_time = 0.0; // 가장 짧은 경로의 시간
+  double worst_time = 0.0; // 경로 막혔을 때 최악의 시간
 
   for (const auto &end_pos : ends) {
     // 맵의 복사본 생성 (원본 맵을 유지하기 위해)
@@ -77,6 +78,8 @@ int main() {
         best_map_copy = map_copy; // 가장 짧은 경로의 맵 복사본 저장
         best_time = elapsed_time.count(); // 경과 시간 저장
       }
+    } else {
+      worst_time = elapsed_time.count();
     }
   }
 
@@ -94,6 +97,7 @@ int main() {
     cout << "Time taken: " << best_time << " ms" << endl;
   } else {
     cout << "No path to the end found." << endl;
+    cout << "Time taken: " << worst_time << " ms" << endl;
   }
 
   return 0;
