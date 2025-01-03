@@ -1,10 +1,18 @@
-# Quoridor AI 에이전트의 성능 향상을 위한 길찾기 알고리즘 비교 연구
+# Quoridor AI 에이전트의 <br /> 성능 향상을 위한 길찾기 알고리즘 비교 연구
+
+2024 교육장비개발 및 아이디어 경진대회 교육장비개발 부문 동상 (한국실천공학교육학회) <br />
+한국실천공학교육학회 2024 종합학술발표대회 논문집 교육장비개발 부문 논문 게재 (PP. 243~244) <br />
+
+**[논문 보기](https://github.com/user-attachments/files/18301757/Quoridor.AI.pdf)** &nbsp;/&nbsp;
+**[A1 발표용 포스터 보기](https://github.com/user-attachments/files/18301733/A1.PPT.pdf)**
+
+<br />
 
 ## Abstract
 
 본 연구는 Quoridor AI 에이전트 성능 향상을 위한 최적의 길찾기 알고리즘을 탐색하는 것을 목적으로 한다. Quoridor 게임의 복잡성과 AI 에이전트의 성능 향상 필요성을 고려할 때, 효율적인 길찾기 알고리즘의 선택이 중요하다. 본 연구에서는 BFS, DFS, A*, D* Lite, JPS와 같은 다양한 길찾기 알고리즘을 구현하고, 실험을 통해 성능을 비교 분석하였다. 분석 결과, D* Lite와 JPS 알고리즘이 Quoridor 게임 환경에서 가장 효율적인 성능을 보였으며, 계산 속도와 최적 경로 탐색 측면에서 우수한 결과를 나타냈다. 특히 최단 경로 탐색에서 두 알고리즘은 실행 시간과 이동 횟수 면에서 균형 잡힌 성능을 보여주었다. 본 연구는 Quoridor AI 에이전트에 D* Lite나 JPS 알고리즘을 적용함으로써 Quoridor 앱의 성능을 크게 향상시킬 수 있음을 보여주었으며, 이는 앱의 경쟁력 강화에 기여할 것으로 기대된다.
 
-**Key Word** <br> 강화학습(RL), 길찾기 알고리즘(PathFind Alg.), BFS, DFS, A*, D* Lite, Jump-Point-Search
+**Key Word** <br /> 강화학습(RL), 길찾기 알고리즘(PathFind Alg.), BFS, DFS, A*, D* Lite, Jump-Point-Search
 
 ## Experiment
 
@@ -18,7 +26,7 @@
 
 ### 1. 실험 설계
 
-실험은 먼저 가로형 맵 2종, 세로형 맵 2종, 대칭 1출구형 맵 2종, 대칭 다출구형 맵 2종, 복합형 맵 2종을 Quoridor의 규칙에서 허용하는 최대 벽 설치 개수인 20개의 벽을 설치하여 구현한다. 각각의 알고리즘은 해당 알고리즘에 대해 설명되어있는 논문 및 도서를 바탕으로 Quoridor의 규칙에 맞게 변형하여 구현한다. 구현된 맵과 알고리즘을 바탕으로 하나의 맵 당 하나의 알고리즘을 10번 실행한 후 평균 실행 시간과, 이동 거리와 같은 지표들을 산출하고, 알고리즘 별 평균 실행 시간과, 이동 거리를 산출한다.
+실험은 가로형, 세로형, 대칭 1출구형, 대칭 다출구형, 복합형 각 2종의 맵에 Quoridor의 최대 벽 20개를 설치하여 구현한다(표 2). 각 알고리즘은 관련 논문과 도서를 바탕으로 Quoridor 규칙에 맞게 변형하여 구현한다. 구현된 맵에서 각 알고리즘을 10회 실행하여 평균 실행 시간과 이동 거리를 측정하고, 이를 바탕으로 알고리즘별 최종 평균값을 산출한다.
 
 ### 2. 실행 환경 구성
 
@@ -62,18 +70,18 @@
     <th>복합형</th>
   </tr>
   <tr>
-    <td><img src="images/maps/map_01.png" alt="가로형 미로 1" width="100"></td>
-    <td><img src="images/maps/map_03.png" alt="세로형 미로 1" width="100"></td>
-    <td><img src="images/maps/map_05.png" alt="대칭 1출구형 미로 1" width="100"></td>
-    <td><img src="images/maps/map_07.png" alt="대칭 다출구형 미로 1" width="100"></td>
-    <td><img src="images/maps/map_09.png" alt="복합형 미로 1" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/991a19c5-763c-45b7-9835-25140f744c14" alt="가로형 미로 1" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/72997a34-77f3-4156-9ccf-e31a41fc80a7" alt="세로형 미로 1" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/83e37786-0016-407b-8dc1-ab577deda5d7" alt="대칭 1출구형 미로 1" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/308a1b91-e3c8-4553-895a-02d265399078" alt="대칭 다출구형 미로 1" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/07f27283-d768-490b-93dc-3d97c54bb792" alt="복합형 미로 1" width="100"></td>
   </tr>
   <tr>
-    <td><img src="images/maps/map_02.png" alt="가로형 미로 2" width="100"></td>
-    <td><img src="images/maps/map_04.png" alt="세로형 미로 2" width="100"></td>
-    <td><img src="images/maps/map_06.png" alt="대칭 1출구형 미로 2" width="100"></td>
-    <td><img src="images/maps/map_08.png" alt="대칭 다출구형 미로 2" width="100"></td>
-    <td><img src="images/maps/map_10.png" alt="복합형 미로 2" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/6b9646b5-705d-4c2e-a7aa-f05e9dea230f" alt="가로형 미로 2" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/25abfa25-a96e-470f-b59a-282aff5a7028" alt="세로형 미로 2" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/9d4ddf53-4a20-4250-8eba-2a19a3e7afae" alt="대칭 1출구형 미로 2" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/8e25d578-cfd2-465f-8251-c4544b343688" alt="대칭 다출구형 미로 2" width="100"></td>
+    <td><img src="https://github.com/user-attachments/assets/2905e7c7-3981-44b0-ba7d-4aea8f83aace" alt="복합형 미로 2" width="100"></td>
   </tr>
 </table>
 
@@ -295,7 +303,7 @@
   </tfoot>
 </table>
 
-위 실험에서 구현된 길찾기 알고리즘들의 성능을 맵 종류별로 분석한 결과, DFS는 모든 맵 유형에서 가장 빠른 실행시간(평균 0.0532ms)을 보였으나, 이동횟수가 다른 알고리즘보다 약 23% 많은 38.6steps로 측정되었다. 특히 복합형 맵에서는 최대 66steps까지 증가하여 실제 게임에서 부적합한 것으로 판단되었다. 반면 D* Lite와 JPS는 모든 맵 유형에서 최적 이동횟수(31.3steps)를 유지하면서도 각각 0.5478ms, 0.6393ms의 준수한 실행시간을 보여 가장 균형 잡힌 성능을 나타냈다. 특히 대칭형 맵들에서 효과적이었으며, 게임에서 요구되는 빠른 응답과 최적 경로 제공을 모두 만족하였다. BFS와 A* 는 최적 이동횟수를 보이지만 가장 느린 실행시간(각각 1.0921ms, 1.0342ms)을 보여 D* Lite나 JPS로 대체 가능함을 확인하였다. 
+위 실험에서 구현된 길찾기 알고리즘들의 성능을 맵 종류별로 분석한 결과, DFS는 모든 맵 유형에서 가장 빠른 실행시간(평균 0.0532ms)을 보였으나, 이동횟수가 다른 알고리즘보다 약 23% 많은 38.6steps로 측정되었다. 특히 복합형 맵에서는 최대 66steps까지 증가하여 실제 게임에서 부적합한 것으로 판단되었다. 반면 D* Lite와 JPS는 모든 맵 유형에서 최적 이동횟수(31.3steps)를 유지하면서도 각각 0.5478ms, 0.6393ms의 준수한 실행시간을 보여 가장 균형 잡힌 성능을 나타냈다. 특히 대칭형 맵들에서 효과적이었으며, 게임에서 요구되는 빠른 응답과 최적 경로 제공을 모두 만족하였다. BFS와 A* 는 최적 이동횟수를 보이지만 가장 느린 실행시간(각각 1.0921ms, 1.0342ms)을 보여 D* Lite나 JPS로 대체 가능함을 확인하였다.
 <br>
 위의 결과를 기반으로, Quoridor AI의 성능을 플레이어의 선호도와 게임 상황에 맞춰 최적화할 수 있도록 알고리즘 선택 기능을 제공할 예정이다. 실행 시간과 이동 횟수의 균형이 중요한 일반적인 상황에서는 D* Lite를, 보다 빠른 응답이 필요한 경우에는 JPS를 선택할 수 있게 하여 사용자 경험을 향상시킬 계획이다.
 
@@ -307,3 +315,7 @@
 4. Sven Koenig et el., "D\* Lite" AAAI July 2002.
 5. Daniel Harabor et el., "Online Graph Pruning for Pathfinding on Grid Maps" AAAI August 2011.
 6. Hidekatsu Furukawa, "알파제로를 분석하며 배우는 인공지능" Jpub June 2020.
+
+## <br />
+
+Copyright © 2024 KibleLab
