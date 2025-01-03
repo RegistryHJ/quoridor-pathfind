@@ -318,4 +318,4 @@
 
 ## <br />
 
-Copyright © 2024 KibleLab
+Copyright © 2024 RegistryHJ
